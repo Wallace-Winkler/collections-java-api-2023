@@ -5,14 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class OrdenacaoNumeros implements Comparable<OrdenacaoNumeros>{
-    private List<Integer> numerosList;
+    final private List<Integer> numerosList;
 
     public OrdenacaoNumeros() {
         this.numerosList = new ArrayList<>();
-    }
-
-    public List<Integer> getNumerosList() {
-        return numerosList;
     }
 
     @Override
