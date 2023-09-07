@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class ListaTarefas {
-    private Set<Tarefa> tarefaSet;
+    final private Set<Tarefa> tarefaSet;
 
     public ListaTarefas() {
         tarefaSet = new HashSet<>();
@@ -19,8 +19,10 @@ public class ListaTarefas {
 
         if (!tarefaSet.isEmpty()) {
             for (Tarefa t : tarefaSet) {
-                tarefaRemover = t;
-                break;
+                if (t.getDescricao().equalsIgnoreCase(descricao)){
+                    tarefaRemover = t;
+                    break;
+                }
             }
         }
 
@@ -40,7 +42,7 @@ public class ListaTarefas {
 
         if (!tarefaSet.isEmpty()) {
             for (Tarefa t : tarefaSet) {
-                if (t.getConcluido() == true) {
+                if (t.getConcluido()) {
                     tarefasConcluidas.add(t);
                 }
             }
@@ -54,7 +56,7 @@ public class ListaTarefas {
 
         if (!tarefaSet.isEmpty()) {
             for (Tarefa t : tarefaSet) {
-                if (t.getConcluido() == false) {
+                if (!t.getConcluido()) {
                     tarefasPendentes.add(t);
                 }
             }
@@ -67,7 +69,7 @@ public class ListaTarefas {
         if (!tarefaSet.isEmpty()) {
             for (Tarefa t : tarefaSet) {
                 if (t.getDescricao().equalsIgnoreCase(descricao)) {
-                    if (t.getConcluido() == false) {
+                    if (!t.getConcluido()) {
                         t.setConcluido(true);
                     }
                 }
@@ -79,7 +81,7 @@ public class ListaTarefas {
         if (!tarefaSet.isEmpty()) {
             for (Tarefa t : tarefaSet) {
                 if (t.getDescricao().equalsIgnoreCase(descricao)) {
-                    if (t.getConcluido() == true) {
+                    if (t.getConcluido()) {
                         t.setConcluido(false);
                     }
                 }
@@ -107,5 +109,13 @@ public class ListaTarefas {
 
         System.out.println(listaTarefas.obterTarefasConcluidas());
         System.out.println(listaTarefas.obterTarefasPendentes());
+
+        listaTarefas.removerTarefa("Tarefa 2");
+        listaTarefas.exibirTarefas();
+        listaTarefas.contarTarefas();
+        listaTarefas.marcarTarefaConcluida("Tarefa 2");
+
+        listaTarefas.limparLista();
+        listaTarefas.exibirTarefas();
     }
 }
